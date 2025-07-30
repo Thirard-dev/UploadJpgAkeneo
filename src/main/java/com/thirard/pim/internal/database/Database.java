@@ -28,17 +28,5 @@ public class Database {
 
     public static void MergeAsset(Asset asset) {
         asset.insertOrReplaceSql();
-//        try {
-//            //statement.execute("DROP TABLE ASSET_FAMILY");
-//            String sql = "INSERT OR REPLACE INTO ASSET ("
-//                    + "\"" + asset.code + "\""
-//                    + ", \"" + asset.assetFamilyCode + "\""
-//                    + asset.mediaJpg != null && asset.mediaJpg.data != null ? ", \"" + asset.mediaJpg.data + "\"" : null
-//                    + asset.media != null && asset.media.data != null ? ", \"" + asset.media.data + "\"" : null
-//                    +
-//            statement.execute("INSERT OR REPLACE INTO ASSET (\"" + asset.code + "\", \"" + asset.assetFamilyCode + "\", \"" + asset.mediaJpg.data + "\", \"" + asset.media.data + "\", " + asset.pdfhasMoreThanOnePage() + ");");
-//        } catch (SQLException e) {
-//            throw new RuntimeException(e);
-//        }
     }
 }

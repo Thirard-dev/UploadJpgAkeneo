@@ -7,14 +7,11 @@ import okhttp3.*;
 import org.apache.commons.lang3.time.DateUtils;
 
 import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
 public class ApiClient {
     private static final Dotenv dotenv = Dotenv.load();
-    private static final ObjectMapper mapper = new ObjectMapper();
 
     private static final OkHttpClient client = new OkHttpClient().newBuilder().connectTimeout(0, TimeUnit.MILLISECONDS).build();
 
@@ -22,10 +19,7 @@ public class ApiClient {
     private static String accessToken;
     private static String refreshToken;
 
-    private static SimpleDateFormat formatter = new SimpleDateFormat("dd-M-yyyy hh:mm:ss", Locale.FRANCE);
     private static Date accessTokenDate = new Date();
-
-    private static String urlAuth = "";
 
     public static void UpdateAccessToken() {
         if (null != accessToken && !accessToken.isBlank()) {
@@ -101,10 +95,6 @@ public class ApiClient {
         } catch (IOException e) {
             System.err.println("2. Erreur token");
         }
-    }
-
-    private static boolean IsTokenValid() {
-        return (null != accessToken && !accessToken.isBlank() && accessTokenDate.before(DateUtils.addHours(accessTokenDate, 1)));
     }
 
     static void incrementRequestCounter() {

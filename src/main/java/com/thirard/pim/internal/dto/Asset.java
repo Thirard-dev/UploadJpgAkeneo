@@ -224,9 +224,7 @@ public class Asset {
         }
     }
 
-    public boolean pdfhasMoreThanOnePage() {
-        //TODO: check if pdf != null
-
+    public boolean pdfHasMoreThanOnePage() {
         if(null == pdf)
             return false;
 
@@ -255,7 +253,7 @@ public class Asset {
             pStatement.setString(1, code);
             pStatement.setString(2, assetFamilyCode);
             pStatement.setString(3, media.data);
-            pStatement.setBoolean(4, pdfhasMoreThanOnePage());
+            pStatement.setBoolean(4, pdfHasMoreThanOnePage());
 
             if(null != mediaJpg && null != mediaJpg.data && !mediaJpg.data.isBlank()) {
                 pStatement.setString(5, mediaJpg.data);
