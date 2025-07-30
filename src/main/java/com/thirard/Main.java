@@ -22,6 +22,8 @@ public class Main {
 
     public static void main(String[] args) throws SQLException {
 
+        ThirardLogger.Init("UPLOAD_JPG_AKENEO", ".");
+
         Database.Connect();
         Database.Init();
 
