@@ -3,6 +3,7 @@ package com.thirard.pim.internal.dto;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.thirard.logger.QuickLogger;
 import com.thirard.pim.internal.api.ApiClient;
 import com.thirard.pim.internal.config.Config;
 import com.thirard.pim.internal.database.Database;
@@ -77,7 +78,7 @@ public class Asset {
             this.uploadJpg();
             this.associateJpgToAsset();
         } catch (Exception e) {
-            System.err.println(e);
+            QuickLogger.error("Asset " + code + " : Erreur lors de la transformation du pdf en jpg.\n" + e.getMessage(), false);
         }
     }
 
@@ -93,7 +94,6 @@ public class Asset {
         File outputFile = new File(outputDir,  code + ".pdf");
 
         if(outputFile.exists()) {
-            System.out.println("Fichier pdf déjà téléchargé : " + code);
             pdf = outputFile;
             return;
         }
@@ -108,7 +108,6 @@ public class Asset {
         while ((bytesRead = inputStream.read(buffer)) != -1) {
             outputStream.write(buffer, 0, bytesRead);
         }
-        System.out.println("PDF téléchargé avec succès : " + outputPath);
 
         pdf = outputFile;
 
@@ -189,8 +188,7 @@ public class Asset {
         try {
             FileUtils.deleteDirectory(new File(path.toString()));
         } catch (IOException e) {
-            System.err.println("Erreur lors de la suppression du dossier temporaire : " + path);
-            System.err.println(e);
+            QuickLogger.warn("Erreur lors de la suppression du dossier temporaire : " + path + "\n" + e.getMessage(), false);
         }
     }
 
@@ -211,7 +209,8 @@ public class Asset {
             ResultSet res = Database.statement.executeQuery("SELECT * FROM ASSET WHERE code = \"" + code + "\"");
             return res.getString("code") == null || !res.getString("pdf_data").equals(media.data);
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            QuickLogger.error("Asset " + code + " : Erreur pdfHasChanged.\n" + e.getMessage(), false);
+            return false;
         }
     }
 
@@ -220,7 +219,8 @@ public class Asset {
             ResultSet res = Database.statement.executeQuery("SELECT * FROM ASSET WHERE code = \"" + code + "\"");
             return res.getString("code") == null || !res.getBoolean("pdf_more_than_one_page");
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            QuickLogger.error("Asset " + code + " : Erreur hasNoPdfOrPdfHasOnePage.\n" + e.getMessage(), false);
+            return false;
         }
     }
 
@@ -231,7 +231,7 @@ public class Asset {
         try( PDDocument pdfDoc = Loader.loadPDF(pdf) ) {
             return pdfDoc.getNumberOfPages() > 1;
         } catch (IOException e) {
-            System.err.println(e);
+            QuickLogger.error("Asset " + code + " : Erreur pdfHasMoreThanOnePage.\n" + e.getMessage(), false);
         }
 
         return false;
@@ -261,9 +261,9 @@ public class Asset {
 
             int x = pStatement.executeUpdate();
 
-            System.out.println(x + " row inserted or updated");
+            QuickLogger.info("Asset " + code + " mis à jour.");
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            QuickLogger.warn("Asset " + code + " : Erreur insertOrReplaceSql.\n" + e.getMessage(), false);
         }
     }
 
