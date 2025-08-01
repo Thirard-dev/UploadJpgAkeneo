@@ -24,6 +24,19 @@ jobs:
           distribution: 'temurin'
           server-id: github # Value of the distributionManagement/repository/id field of the pom.xml
           settings-path: ${{ github.workspace }} # location for the settings.xml file
+
+      - name: Configure Maven settings
+        run: |
+          mkdir -p ~/.m2
+          echo "<settings>
+                  <servers>
+                      <server>
+                          <id>github</id>
+                          <username>${{ secrets.USER }}</username>
+                          <password>${{ secrets.TOKEN }}</password>
+                      </server>
+                  </servers>
+                </settings>" > ~/.m2/settings.xml
   
       - name: Have GitHub Actions Build Maven Project
         run: |
