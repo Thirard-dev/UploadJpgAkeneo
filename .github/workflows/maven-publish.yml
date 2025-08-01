@@ -35,6 +35,11 @@ jobs:
                           <username>${{ secrets.USER }}</username>
                           <password>${{ secrets.TOKEN }}</password>
                       </server>
+                      <server>
+                          <id>thirard-akeneo-upload-jpg</id>
+                          <username>${{ secrets.USER }}</username>
+                          <password>${{ secrets.TOKEN }}</password>
+                      </server>
                   </servers>
                 </settings>" > ~/.m2/settings.xml
                 
