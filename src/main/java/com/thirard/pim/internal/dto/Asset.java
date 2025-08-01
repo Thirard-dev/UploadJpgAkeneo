@@ -146,7 +146,7 @@ public class Asset {
                 .addFormDataPart("file", jpg.getName(), RequestBody.create(jpg, MediaType.parse("application/octet-stream")))
                 .build();
 
-        RequestRes res = ApiClient.Post("https://thirard.cloud.akeneo.com/api/rest/v1/asset-media-files", body);
+        RequestRes res = ApiClient.Post(Config.getBaseUrl() + "/asset-media-files", body);
         if(res.isSuccessful()) {
             mediaJpg = new Resource();
             mediaJpg.data = res.getHeaders().get("asset-media-file-code");
