@@ -31,7 +31,7 @@ jobs:
           echo "<settings>
                   <servers>
                       <server>
-                          <id>github</id>
+                          <id>thirard-logger-repo</id>
                           <username>${{ secrets.USER }}</username>
                           <password>${{ secrets.TOKEN }}</password>
                       </server>
