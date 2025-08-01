@@ -1,4 +1,4 @@
-package com.thirard;
+package com.thirard.pim;
 
 import com.thirard.logger.QuickLogger;
 import com.thirard.logger.ThirardLogger;

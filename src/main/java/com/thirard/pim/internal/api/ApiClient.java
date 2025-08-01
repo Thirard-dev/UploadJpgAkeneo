@@ -2,7 +2,7 @@ package com.thirard.pim.internal.api;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import io.github.cdimascio.dotenv.Dotenv;
+import com.thirard.pim.internal.config.Config;
 import okhttp3.*;
 import org.apache.commons.lang3.time.DateUtils;
 
@@ -11,7 +11,6 @@ import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 public class ApiClient {
-    private static final Dotenv dotenv = Dotenv.load();
 
     private static final OkHttpClient client = new OkHttpClient().newBuilder().connectTimeout(0, TimeUnit.MILLISECONDS).build();
 
@@ -36,14 +35,14 @@ public class ApiClient {
 
         OkHttpClient client = new OkHttpClient().newBuilder().build();
         RequestBody body = new FormBody.Builder()
-                .add("username", dotenv.get("USER"))
-                .add("password", dotenv.get("PASSWORD"))
+                .add("username", Config.getUSER())
+                .add("password", Config.getPASSWORD())
                 .add("grant_type", "password")
                 .build();
 
         Request request = new Request.Builder()
-                .url(dotenv.get("URL_AUTH"))
-                .addHeader("Authorization", dotenv.get("AUTH_AUTHORIZATION"))
+                .url(Config.getURl_AUTH())
+                .addHeader("Authorization", Config.getAuthAuthorization())
                 .method("POST", body)
                 .build();
 
@@ -73,8 +72,8 @@ public class ApiClient {
                 .build();
 
         Request request = new Request.Builder()
-                .url(dotenv.get("URL_AUTH"))
-                .addHeader("Authorization", dotenv.get("AUTH_AUTHORIZATION"))
+                .url(Config.getURl_AUTH())
+                .addHeader("Authorization", Config.getAuthAuthorization())
                 .method("POST", body)
                 .build();
 
