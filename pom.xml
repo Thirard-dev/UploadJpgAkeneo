@@ -141,4 +141,12 @@
         </repository>
     </repositories>
 
+    <distributionManagement>
+        <repository>
+            <id>thirard-akeneo-upload-jpg</id>
+            <name>Thirard Akeneo Upload Package</name>
+            <url>https://maven.pkg.github.com/Thirard-dev/UploadJpgAkeneo</url>
+        </repository>
+    </distributionManagement>
+
 </project>
