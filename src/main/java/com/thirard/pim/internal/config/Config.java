@@ -26,10 +26,9 @@ public class Config {
 
         try {
             JsonNode node = yamlMapper.readTree(file);
-
             LastExec.LoadFromNode(node.get("exec"));
-
         } catch (IOException e) {
+
             throw new RuntimeException(e);
         }
     }

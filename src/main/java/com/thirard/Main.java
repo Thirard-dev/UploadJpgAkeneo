@@ -1,5 +1,8 @@
 package com.thirard;
 
+import com.thirard.logger.QuickLogger;
+import com.thirard.logger.ThirardLogger;
+
 import com.thirard.pim.internal.api.ApiClient;
 import com.thirard.pim.internal.api.AssetRequestRes;
 import com.thirard.pim.internal.api.RequestRes;
@@ -17,8 +20,9 @@ import java.util.stream.Collectors;
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
 
-
     public static void main(String[] args) throws SQLException {
+
+        ThirardLogger.Init("UPLOAD_JPG_AKENEO", ".");
 
         Database.Connect();
         Database.Init();
@@ -53,9 +57,13 @@ public class Main {
             if(assetRes.assets.isEmpty())
                 continue;
 
-            System.out.println("------------------- " + assetFamily.getName().toUpperCase() + " -------------------");
             int pageNumber = 0;
             do {
+
+                if(ApiClient.getRequestCounter() > 3980) {
+                    break;
+                }
+
                 pageNumber++;
                 System.out.println("Page numéro : " + pageNumber);
 
@@ -75,7 +83,10 @@ public class Main {
                 assetsToUpdate.addAll(assetsWithoutJpg.stream().filter(Asset::hasNoPdfOrPdfHasOnePage).collect(Collectors.toList()));
 
                 for(Asset asset: assetsToUpdate) {
-                    System.out.println(asset.code + " is being updated.");
+
+                    if(ApiClient.getRequestCounter() > 3980) {
+                        break;
+                    }
 
                     asset.updateJpg();
 
@@ -92,6 +103,8 @@ public class Main {
 
         LastExec.setAssetFamilyCode("");
         LastExec.setAssetCode("");
+
+        QuickLogger.info("Tous les assets ont été mis à jour !", true);
     }
 
     static List<AssetFamily> GetAssetFamilies() {
@@ -105,7 +118,7 @@ public class Main {
                 assetFamilies.add(new AssetFamily(res.getString("code"), res.getString("endpoint_url")));
             }
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            QuickLogger.error("Erreur lors de la récupération des famille d'asset.\n" + e.getMessage());
         }
 
         return assetFamilies;
