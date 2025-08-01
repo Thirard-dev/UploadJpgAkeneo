@@ -43,20 +43,8 @@ jobs:
           ls -la ~/.m2  # Liste les fichiers dans le répertoire ~/.m2
           cat ~/.m2/settings.xml  # Affiche le contenu du fichier settings.xml
       
-      - name: Have GitHub Actions Build Maven Project
-        run: |
-          mvn -B package --file pom.xml
-          mkdir staging && cp target/*.jar staging
-
-      - name: Set up a cache for Maven
-        uses: actions/cache@v4.2.3
-        with:
-          path: ~/.m2
-          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
-          restore-keys: $ {{ runner.os }}-m2
-
-      - name: Persist workflow data as artifact
-        uses: actions/upload-artifact@v4.6.2
-        with: 
-          name: github-actions-artifact
-          path: staging
+      - name: Build with Maven
+        run: mvn clean compile assembly:single
+  
+      - name: Deploy to GitHub Packages
+        run: mvn deploy -Dmaven.resolver.transport=wagon --settings ~/.m2/settings.xml
