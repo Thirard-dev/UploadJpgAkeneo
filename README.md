@@ -1,6 +1,6 @@
 ## Présentation
 
-Le projet a pour but de déposé dans Akeneo les assets qui sont au format PDF en JPG.
+Le projet a pour but de déposer dans Akeneo les assets qui sont au format PDF en JPG.
 
 ## Flux du projet
 
