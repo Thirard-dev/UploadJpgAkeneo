@@ -37,7 +37,12 @@ jobs:
                       </server>
                   </servers>
                 </settings>" > ~/.m2/settings.xml
-  
+                
+      - name: Afficher le répertoire ~/.m2
+        run: |
+          ls -la ~/.m2  # Liste les fichiers dans le répertoire ~/.m2
+          cat ~/.m2/settings.xml  # Affiche le contenu du fichier settings.xml
+      
       - name: Have GitHub Actions Build Maven Project
         run: |
           mvn -B package --file pom.xml
