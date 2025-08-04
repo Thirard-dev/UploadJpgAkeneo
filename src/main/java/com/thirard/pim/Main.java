@@ -103,6 +103,7 @@ public class Main {
 
         LastExec.setAssetFamilyCode("");
         LastExec.setAssetCode("");
+        Config.SaveExec();
 
         QuickLogger.info("Tous les assets ont été mis à jour !", true);
     }
