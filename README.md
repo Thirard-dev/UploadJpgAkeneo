@@ -6,7 +6,7 @@ Le projet a pour but de déposer dans Akeneo les assets qui sont au format PDF e
 
 > 🚧 En cours 🚧
 
-## env
+## Contenu du fichier .env
 
 Un template est disponible à la racine du projet : [.env.template](./.env.template)
 
@@ -26,6 +26,10 @@ suivre la documentation Akeneo : [authentification Akeneo Pim](https://api.akene
 ### Exécution
 - `CONFIG_FILE_PATH` : Chemin du fichier de configuration pour stocké l'état de l'exécution
 - `TEMP_FOLDER` : Chemin du dossier qui stock les pdf et jpg temporairement
+
+### Logger
+- `LOG4J_CONFIG_FILE` : Chemin vers le fichier de configuration log4j
+- `URL_GRAYLOG` : Url du graylog interne
 
 ## Mise en production
 
