@@ -4,7 +4,7 @@ Le projet a pour but de déposer dans Akeneo les assets qui sont au format PDF e
 
 ## Flux du projet
 
-⚠️ En cours ⚠️
+> 🚧 En cours 🚧
 
 ## env
 
@@ -27,3 +27,20 @@ suivre la documentation Akeneo : [authentification Akeneo Pim](https://api.akene
 - `CONFIG_FILE_PATH` : Chemin du fichier de configuration pour stocké l'état de l'exécution
 - `TEMP_FOLDER` : Chemin du dossier qui stock les pdf et jpg temporairement
 
+## Mise en production
+
+### Téléchargement
+
+Télécharger le fichier exécutable .jar disponible sur github : [dernière version](https://github.com/Thirard-dev/UploadJpgAkeneo/packages/2602571).
+
+> ⚠️ Attention à bien prendre le fichier avec le suffixe jar-with-dependencies, sinon il ne fonctionnera pas
+>
+> <img width="220" height="476" alt="image" src="https://github.com/user-attachments/assets/4e8ef7d4-308d-4196-b679-9c00d5e8c2ec" />
+
+### Installation
+
+Déposer le fichier dans un dossier.
+
+Créer un fichier .bat à côté et copié-collé le contenu suivant : `java -jar upload-jpg-akeneo-1.0.0-jar-with-dependencies.jar`
+
+> 🚨 Pour que l'exécutable fonctionne, n'oubliez pas de le fichier .env.prod et fichier config.yml
