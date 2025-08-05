@@ -4,7 +4,7 @@ Le projet a pour but de déposer dans Akeneo les assets qui sont au format PDF e
 
 ## Flux du projet
 
-> 🚧 En cours 🚧
+> :construction: En cours :construction:
 
 ## Contenu du fichier .env
 
@@ -37,7 +37,7 @@ suivre la documentation Akeneo : [authentification Akeneo Pim](https://api.akene
 
 Télécharger le fichier exécutable .jar disponible sur github : [dernière version](https://github.com/Thirard-dev/UploadJpgAkeneo/packages/2602571).
 
-> ⚠️ Attention à bien prendre le fichier avec le suffixe jar-with-dependencies, sinon il ne fonctionnera pas
+> :warning: Attention à bien prendre le fichier avec le suffixe jar-with-dependencies, sinon il ne fonctionnera pas
 >
 > <img width="220" height="476" alt="image" src="https://github.com/user-attachments/assets/4e8ef7d4-308d-4196-b679-9c00d5e8c2ec" />
 
