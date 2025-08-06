@@ -4,7 +4,7 @@ Le projet a pour but de déposer dans Akeneo les assets qui sont au format PDF e
 
 ## Flux du projet
 
-> :construction: En cours :construction:
+<img alt="image" src="./src/main/resources/Flux%20upload%20fichier%20jpg%20akeneo.jpg"/>
 
 ## Contenu du fichier .env
 
